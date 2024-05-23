@@ -1,0 +1,11 @@
+Cas 1
+xmin -1.0
+xmax 1.0
+ymin -0.5
+ymax 0.5
+Tf 2.0
+Nx 101
+Ny 101
+CFL 0.5
+space_scheme 2
+time_scheme 2

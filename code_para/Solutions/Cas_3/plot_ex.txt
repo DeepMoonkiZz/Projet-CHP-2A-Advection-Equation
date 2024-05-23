@@ -1,0 +1,32 @@
+# Exécuter la commande shell pour compter le nombre de fichiers dans le dossier
+files_count = system("ls | grep -c '^sol[0-9]*\\.dat$'")
+
+# permet de définir les couleurs d'affichage
+set palette defined ( 0 '#F7FBFF',\
+                      1 '#DEEBF7',\
+                      2 '#C6DBEF',\
+                      3 '#9ECAE1',\
+                      4 '#6BAED6',\
+                      5 '#4292C6',\
+                      6 '#2171B5',\
+                      7 '#084594' )
+
+# forcer l'étendue de la colorbar. A changer selon les cas.
+set cbrange [-0.2:1.2]
+
+# force la mise à l'échelle des axes.
+set size ratio -1
+
+# si affichage 3D, force l'étendue de l'axe des z. A changer selon les cas.
+set zrange [-0.2:1.2]
+# si affichage 3D, fixe le point de vue. A changer selon les cas.
+set view 48,132
+
+do for [i = 0:(files_count-1)] {
+    t=i*0.01
+    set title "t = ".sprintf("%f", t)." s"." (i = ".sprintf("%d", i).")"
+    show title
+    ## fait un affichage en 3D et en couleur
+    splot "./sol_ex".i.".dat" u 1:2:3 palette
+    pause 0.03
+}
